@@ -6,8 +6,12 @@ import { createTripBordTemplate } from './view/trip-bord.js';
 import { createNewPointTemplate } from './view/new-point.js';
 import { createEditPointTemplate } from './view/edit-point.js';
 import { createPointTemplate } from './view/point.js';
+import { generatePoint } from './mock/point-data-generator.js';
 
-const POINT_COUNT = 3;
+const POINT_COUNT = 18;
+
+const points = new Array(POINT_COUNT).fill().map(generatePoint);
+console.log(points);
 
 const render = (container, template, place = 'beforeend') => {
   container.insertAdjacentHTML(place, template);
@@ -33,5 +37,5 @@ render(eventsList, createEditPointTemplate());
 render(eventsList, createNewPointTemplate());
 
 for (let i = 0; i < POINT_COUNT; i++) {
-  render(eventsList, createPointTemplate());
+  render(eventsList, createPointTemplate(points[i]));
 }
